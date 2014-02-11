@@ -25,12 +25,15 @@ parser.add_argument('-o', '--output', dest='output', type=str, default='ireport.
                    help='The name of the ouput report file.')
 parser.add_argument('-n', '--num', dest='num', type=int, default='3', required=False,
                    help='The number of images per row.')
+parser.add_argument('-t', '--title', dest='title', type=str, default='report', required=False,
+                   help='The title of the report.')
 args = parser.parse_args()
 
 
-inputDir=args.dir           # The directory to look for images.
-outputFileName=args.output  # The name of the ouput report.
-numImagesPerRow = 3.0       # The number of images per row.
+inputDir	= args.dir	# The directory to look for images.
+outputFileName	= args.output	# The name of the ouput report.
+numImagesPerRow = args.num	# The number of images per row.
+title 		= args.title	# The title of the report.
 
 # Look for the files in the input directory.
 files = []
@@ -41,7 +44,7 @@ for file in os.listdir(inputDir):
 
 # Create the report
 latexFile = open(outputFileName,"w")
-latex.BeginDocument(latexFile)
+latex.BeginDocument(latexFile,title)
 numFigures = int(math.ceil(len(files) / numImagesPerRow))
 for i in range(0,numFigures):
     latex.BeginFigure(latexFile)

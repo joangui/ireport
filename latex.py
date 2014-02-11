@@ -11,7 +11,7 @@
 #You should have received a copy of the GNU General Public License
 #along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-def BeginDocument(fileObject):
+def BeginDocument(fileObject,title):
     fileObject.write("\documentclass{article}\n")
     fileObject.write("\\usepackage{fullpage}\n")
     fileObject.write("\\usepackage{array}\n")
@@ -27,7 +27,9 @@ def BeginDocument(fileObject):
     fileObject.write("\\usepackage{tabulary}\n")
     fileObject.write("\\usepackage{float}\n")
     fileObject.write("\\usepackage[utf8]{inputenc}\n")
+    fileObject.write("\\title{"+title+"}\n")
     fileObject.write("\\begin{document}\n")
+    fileObject.write("\\maketitle\n")
     return
 
 def EndDocument(fileObject):
@@ -56,3 +58,5 @@ def IncludeGraphics(fileObject,imageFileName,rotate):
     else: 
         fileObject.write("\includegraphics[width=0.7\linewidth]{"+imageFileName+"}\n")
     return
+
+
